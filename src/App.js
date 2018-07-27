@@ -1,21 +1,15 @@
-import React, { Component, Fragment } from 'react';
+import React, {Component, Fragment} from 'react';
 import './App.css';
-import List from './ListofContacts'
-import TestFetch from "./TestFetch";
-import TestFetch2 from "./TestFetch2";
+import Router from "./Router";
 
 class App extends Component {
-  render() {
-    return (
-      <Fragment>
-        <body>
-          <List/>
-          <TestFetch/>
-          <TestFetch2/>
-        </body>
-      </Fragment>
-    );
-  }
+    render() {
+        return (
+            <Fragment>
+                <Router/>
+            </Fragment>
+        );
+    }
 }
 
 export default App;

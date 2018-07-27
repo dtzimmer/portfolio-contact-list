@@ -1,6 +1,8 @@
 import React, {Component, Fragment} from 'react'
 
-const API = 'https://hn.algolia.com/api/v1/search?query=';
+import Header from "./Header";
+
+const API = 'https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=df8118601eb444068640b1e61d12270f';
 
 class TestFetch extends Component {
 
@@ -9,14 +11,14 @@ class TestFetch extends Component {
         super(props);
 
         this.state = {
-            hits: [],
+            articles: [],
             isLoading: false,
             error: null,
         };
     }
 
     componentDidMount() {
-        this.setState({ isLoading: true });
+        this.setState({isLoading: true});
 
         fetch(API)
             .then(response => {
@@ -26,13 +28,13 @@ class TestFetch extends Component {
                     throw new Error('Something went wrong ...');
                 }
             })
-            .then(data => this.setState({ hits: data.hits, isLoading: false }))
-            .catch(error => this.setState({ error, isLoading: false }));
+            .then(data => this.setState({articles: data.articles, isLoading: false}))
+            .catch(error => this.setState({error, isLoading: false}));
     }
 
     render() {
 
-        const { hits, isLoading, error } = this.state;
+        const {articles, isLoading, error} = this.state;
 
         if (error) {
             return <p>{error.message}</p>;
@@ -42,14 +44,52 @@ class TestFetch extends Component {
         }
         return (
             <Fragment>
-                <h1>Latest News</h1>
-                <ul>
-                    {hits.map(hit =>
-                        <li key={hit.objectID}>
-                            <a href={hit.url}>{hit.title}</a>
-                        </li>
-                    )}
-                </ul>
+                <Header/>
+                <body className="backgroundlightgrey">
+                <h2>Fetching News</h2>
+                <p>powered by NewsAPI.org</p>
+                <section>
+                    {articles.map((info) => {
+                        return (
+                            <div className="articles" key={info.id}>
+                                <div>
+                                    <img className="newsimage" src={info.urlToImage} alt=""/>
+                                </div>
+                                <div>
+                                    <div className="centerlink">
+                                        <a href={info.url}>{info.title}</a>
+                                    </div>
+                                    <p>{info.description}</p>
+                                    {/*<p>Author: {info.author}</p>*/}
+                                    <p>Source: {info.source.name}</p>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </section>
+
+                {/*<div className="container">*/}
+                    {/*<div className="row">*/}
+                        {/*<div className="col-sm-2">*/}
+                            {/*{articles.map((info) => {*/}
+                                {/*return (*/}
+                                    {/*<div className="articles" key={info.id}>*/}
+                                        {/*<div>*/}
+                                            {/*<img src={info.urlToImage} alt=""/>*/}
+                                            {/*<p>Author: {info.author}</p>*/}
+                                            {/*<p>Source: {info.source.name}</p>*/}
+                                        {/*</div>*/}
+                                        {/*<div>*/}
+                                            {/*<a href={info.url}>{info.title}</a>*/}
+                                            {/*<p>{info.description}</p>*/}
+                                        {/*</div>*/}
+                                    {/*</div>*/}
+                                {/*)*/}
+                            {/*})}*/}
+                        {/*</div>*/}
+                    {/*</div>*/}
+                {/*</div>*/}
+                </body>
             </Fragment>
         );
     }

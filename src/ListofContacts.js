@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import './App.css';
-
+import Header from "./Header";
 
 class ListOfContacts extends Component {
     constructor() {
@@ -21,20 +21,22 @@ class ListOfContacts extends Component {
             })
     }
 
-
     render() {
         return (
             <Fragment>
-                <h1>Contact List</h1>
-
-                {this.state.contacts.map(contact =>
-                    <div className="border" key={contact._id}>
-                        <h3> Name: {contact.firstName} {contact.lastName}</h3>
-                        <p> Phone: {contact.phone}</p>
-                        <p> Email: {contact.email}</p>
+                <Header/>
+                <h2>Fetching Contacts</h2>
+                <div>
+                    <div>
+                        {this.state.contacts.map(contact =>
+                        <div className="border" key={contact._id}>
+                            <h3> Name: {contact.firstName} {contact.lastName}</h3>
+                            <p> Phone: {contact.phone}</p>
+                            <p> Email: {contact.email}</p>
+                        </div>
+                    )}
                     </div>
-                )}
-
+                </div>
             </Fragment>
         )
     }

@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import './App.css';
+import Header from "./Header";
 
 
 class TestFetch2 extends Component {
@@ -12,7 +13,7 @@ class TestFetch2 extends Component {
 
     componentWillMount() {
 
-        fetch('https://randomuser.me/api/?results=50')
+        fetch('https://randomuser.me/api/?results=25')
             .then(results => {
                 return results.json();
             })
@@ -28,8 +29,9 @@ class TestFetch2 extends Component {
 
         return (
             <Fragment>
-                <body className="backgroundcolor">
-                <h1>Friends</h1>
+                <Header/>
+                <body className="backgroundlightblue">
+                <h2>Fetching Friends</h2>
 
                     <section >
                             {results.map((info) => {

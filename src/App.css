@@ -1,5 +1,28 @@
-.border {
-  border: 1px solid black;
+section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+body {
+  margin: 10px;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Kaushan Script', cursive;
+}
+
+h2 {
+  text-align: center;
+  padding: 10px;
+  background: whitesmoke;
+}
+
+p {
+  margin: 3px;
+  padding: 3px;
+  text-align: center;
 }
 
 .profiles {
@@ -17,15 +40,31 @@
   border-radius: 5px;
 }
 
-.backgroundcolor {
+.newsimage {
+  display: block;
+  margin: 10px auto;
+  width: 50%;
+}
+
+.backgroundlightblue {
   background: lightskyblue;
 }
 
-section {
-  display: flex;
-  flex-wrap: wrap;
+.backgroundlightgrey {
+  background: lightgrey;
 }
 
-body {
-  margin: 10px;
+.articles {
+  display: flex;
+  flex-direction: column;
+  margin: 5vh;
+  padding: 10px;
+  background: whitesmoke;
+  border-radius: 5px;
 }
+
+.centerlink {
+  text-align: center;
+}
+
+
