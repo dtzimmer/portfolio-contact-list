@@ -6,7 +6,7 @@ class Header extends Component {
     render() {
         return (
             <Fragment>
-                <h1>Fetch.com</h1>
+                <h1>Fetch.netlify.com</h1>
                 <nav>
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
@@ -18,6 +18,7 @@ class Header extends Component {
                             <div className="navbar-nav">
                                 <Link to ="/"><a className="nav-item nav-link active">Home <span
                                     className="sr-only">(current)</span></a></Link>
+                                <Link to ="ListofContacts"><a className="nav-item nav-link">Contacts</a></Link>
                                 <Link to ="TestFetch"><a className="nav-item nav-link">News</a></Link>
                                 <Link to ="TestFetch2"><a className="nav-item nav-link">Friends</a></Link>
                                 <Link to ="Twitter"><a className="nav-item nav-link">Twitter</a></Link>

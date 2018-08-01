@@ -25,6 +25,11 @@ p {
   text-align: center;
 }
 
+.centerlink{
+  width: 100%;
+  text-align: center;
+}
+
 .profiles {
   display: flex;
   justify-content: space-around;
@@ -44,6 +49,13 @@ p {
   display: block;
   margin: 10px auto;
   width: 50%;
+}
+
+.logo {
+  display: block;
+  margin: 10px auto;
+  width: 50%;
+  height: 50%;
 }
 
 .backgroundlightblue {

@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Home from './Home'
 import ListofContacts from './ListofContacts'
 import WebLinks from './TestFetch'
 import Friends from './TestFetch2'
@@ -13,7 +14,8 @@ import {
 const Routing = () => (
         <Router>
             <Switch>
-                <Route path="/" exact component={ListofContacts}/>
+                <Route path="/" exact component={Home}/>
+                <Route path="/listofcontacts" component={ListofContacts}/>
                 <Route path="/testfetch" component={WebLinks}/>
                 <Route path="/testfetch2" component={Friends}/>
                 <Route path="/twitter" component ={Twitter}/>
