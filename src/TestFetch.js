@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react'
 
 import Header from "./Header";
+import Footer from "./Footer";
 
 const API = 'https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=df8118601eb444068640b1e61d12270f';
 
@@ -68,27 +69,7 @@ class TestFetch extends Component {
                     })}
                 </section>
 
-                {/*<div className="container">*/}
-                    {/*<div className="row">*/}
-                        {/*<div className="col-sm-2">*/}
-                            {/*{articles.map((info) => {*/}
-                                {/*return (*/}
-                                    {/*<div className="articles" key={info.id}>*/}
-                                        {/*<div>*/}
-                                            {/*<img src={info.urlToImage} alt=""/>*/}
-                                            {/*<p>Author: {info.author}</p>*/}
-                                            {/*<p>Source: {info.source.name}</p>*/}
-                                        {/*</div>*/}
-                                        {/*<div>*/}
-                                            {/*<a href={info.url}>{info.title}</a>*/}
-                                            {/*<p>{info.description}</p>*/}
-                                        {/*</div>*/}
-                                    {/*</div>*/}
-                                {/*)*/}
-                            {/*})}*/}
-                        {/*</div>*/}
-                    {/*</div>*/}
-                {/*</div>*/}
+                <Footer/>
                 </body>
             </Fragment>
         );

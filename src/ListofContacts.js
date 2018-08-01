@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import './App.css';
 import Header from "./Header";
+import Footer from "./Footer";
 
 class ListOfContacts extends Component {
     constructor() {
@@ -59,6 +60,7 @@ class ListOfContacts extends Component {
                     )}
                     </div>
                 </div>
+                <Footer/>
             </Fragment>
         )
     }

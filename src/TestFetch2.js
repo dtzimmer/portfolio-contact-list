@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import './App.css';
 import Header from "./Header";
+import Footer from "./Footer";
 
 
 class TestFetch2 extends Component {
@@ -49,6 +50,7 @@ class TestFetch2 extends Component {
                                 )
                             })}
                     </section>
+                <Footer/>
                 </body>
             </Fragment>
         )
