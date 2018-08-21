@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import Home from './Home'
 import ListofContacts from './ListofContacts'
-import WebLinks from './TestFetch'
-import Friends from './TestFetch2'
+import TestFetch from './TestFetch'
+import TestFetch2 from './TestFetch2'
 import Twitter from './Twitter'
 import {
     BrowserRouter as Router,
@@ -16,8 +16,8 @@ const Routing = () => (
             <Switch>
                 <Route path="/" exact component={Home}/>
                 <Route path="/listofcontacts" component={ListofContacts}/>
-                <Route path="/testfetch" component={WebLinks}/>
-                <Route path="/testfetch2" component={Friends}/>
+                <Route path="/testfetch" component={TestFetch}/>
+                <Route path="/testfetch2" component={TestFetch2}/>
                 <Route path="/twitter" component ={Twitter}/>
             </Switch>
         </Router>

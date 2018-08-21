@@ -62,7 +62,7 @@ class ListOfContacts extends Component {
                 <Header/>
                 <h2>Fetching Contacts</h2>
                 <div>
-                    <h3>Coming Soon...</h3>
+                    <h3>Under Construction...</h3>
                 <Contactform/>
                     <div>
                         {this.state.contacts.map(contact =>
