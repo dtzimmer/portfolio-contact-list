@@ -46,13 +46,13 @@ class TestFetch extends Component {
         return (
             <Fragment>
                 <Header/>
-                <body className="backgroundlightgrey">
+                <div className="backgroundlightblue">
                 <h2>Fetching News</h2>
                 <p>powered by NewsAPI.org</p>
                 <section>
                     {articles.map((info) => {
                         return (
-                            <div className="articles" key={info.id}>
+                            <div className="articles" key={info.publishedAt}>
                                 <div>
                                     <img className="newsimage" src={info.urlToImage} alt=""/>
                                 </div>
@@ -70,7 +70,7 @@ class TestFetch extends Component {
                 </section>
 
                 <Footer/>
-                </body>
+                </div>
             </Fragment>
         );
     }

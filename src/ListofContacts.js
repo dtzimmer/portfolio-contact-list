@@ -1,90 +1,136 @@
-import React, {Component, Fragment} from 'react'
-import './App.css';
-import Header from "./Header";
-import Footer from "./Footer";
-import Contactform from "./ContactForm"
+import React, { Component, Fragment } from 'react'
+import './App.css'
+import Header from './Header'
+import Footer from './Footer'
 
 class ListOfContacts extends Component {
-    constructor() {
-        super();
-        this.state = {
-            contacts: []
-        };
+  constructor(props) {
+    super(props)
+    this.state = {
+      contacts: [],
+      name: '',
+      phone: '',
+      email: ''
     }
+  }
 
-    handleSubmit = async (_id) => {
+  componentDidMount() {
+    this.getContacts()
+  }
 
-        await fetch('http://localhost:4000/' + _id, {
-            method: 'delete'
-        }).then(response => {
-            response.json().then(json => {
-                return json;
-            })
-        });
-        await this.getContacts()
-    };
+  getContacts = async () => {
+    const response = await fetch('https://express-mongo-xozxpyywjj.now.sh/api/contacts', {
+      mode: 'cors',
+      method: 'GET'
+    })
+    const responseJson = await response.json()
+    this.setState({ contacts: responseJson })
+    this.setState({
+      name: '',
+      phone: '',
+      email: ''
+    })
+  }
 
+  handleSubmit = async (e) => {
+    e.preventDefault()
+    const data = JSON.stringify({
+      name: this.state.name,
+      phone: this.state.phone,
+      email: this.state.email
+    })
+    const { _id } = this.state
+    console.log(_id, data)
 
-    getContacts = async () => {
-
-        return fetch('http://localhost:4000')
-            .then(results => {
-                return results.json();
-            })
-            .then(data => {
-                this.setState({contacts: data})
-            })
+    if (!_id) {
+      await fetch('https://express-mongo-xozxpyywjj.now.sh/api/contacts', {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
 
     }
-
-    formAppear = () => {
-
+    else {
+      await fetch(`https://express-mongo-xozxpyywjj.now.sh/api/contacts/${_id}`, {
+        method: 'PUT',
+        body: data,
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
     }
+    await this.getContacts()
+  }
 
-    // hiddenForm() {
-    //     var x = document.getElementById("myDIV");
-    //     if (x.style.display === "none") {
-    //         x.style.display = "block";
-    //     } else {
-    //         x.style.display = "none";
-    //     }
-    // }
+  handleDelete = async (e, id) => {
+    e.preventDefault()
+    console.log(id)
+    await fetch(`https://express-mongo-xozxpyywjj.now.sh/api/contacts/${id}`, {
+      method: 'delete'
+    }).then(data => {
+      this.getContacts()
+    })
+  }
+
+  populateFields = async (e, id) => {
+    e.preventDefault()
+    console.log(id)
+    const response = await fetch(`https://express-mongo-xozxpyywjj.now.sh/api/contacts/${id}`, {
+      mode: 'cors',
+      method: 'GET'
+    })
+    const responseJson = await response.json()
+    console.log(responseJson)
+
+    this.setState({ ...responseJson })
+  }
 
 
-    async componentWillMount() {
-
-        await this.getContacts()
-    }
-
-    render() {
-        return (
-            <Fragment>
-                <Header/>
-                <h2>Fetching Contacts</h2>
-                <div>
-                    <h3>Under Construction...</h3>
-                <Contactform/>
-                    <div>
-                        {this.state.contacts.map(contact =>
-                        <div className="border" key={contact._id}>
-                            <h3> Name: {contact.firstName} {contact.lastName}</h3>
-                            <p> Phone: {contact.phone}</p>
-                            <p> Email: {contact.email}</p>
-                            <button onClick={() => this.handleSubmit(contact._id)}>Delete</button>
-                            {/*<button onClick={() => this.hiddenForm(contact._id)}>Click Me</button>*/}
-                            {/*<div id="myDIV" key={contact._id}>*/}
-                                {/*<label form="firstname">First Name</label>*/}
-                                {/*<input type="text" id="firstname" name="firstname"*/}
-                                       {/*placeholder="First name" onChange={e => this.setState({ firstName: e.target.value})}/>*/}
-                            {/*</div>*/}
-                        </div>
-                    )}
-                    </div>
-                </div>
-                <Footer/>
-            </Fragment>
-        )
-    }
+  render() {
+    return (
+      <Fragment>
+        <Header />
+        <div className="backgroundlightblue">
+          <h2>Fetching Contacts</h2>
+          <section>
+            <form onSubmit={this.handleSubmit}>
+              <br />
+              <label form="name">Name</label>
+              <input type="text" id="name" name="name"
+                     placeholder="First name" value={this.state.name}
+                     onChange={e => this.setState({ name: e.target.value })} />
+              <br />
+              <label form="email">Email:</label>
+              <input type="email" id="email" name="email"
+                     placeholder="Enter Email" value={this.state.email}
+                     onChange={e => this.setState({ email: e.target.value })} />
+              <br />
+              <label form="phone">Phone:</label>
+              <input type="tel" id="phone" name="phone"
+                     placeholder="Enter Phone" value={this.state.phone}
+                     onChange={e => this.setState({ phone: e.target.value })} />
+              <br />
+              <button type="submit">Submit</button>
+            </form>
+          </section>
+          <div>
+            <h2>List of Contacts</h2>
+            {this.state.contacts.map(contact =>
+              <div className="border" key={contact._id}>
+                <h3> Name: {contact.name}</h3>
+                <p> Phone: {contact.phone}</p>
+                <p> Email: {contact.email}</p>
+                <button onClick={(e) => this.handleDelete(e, contact._id)}>Delete</button>
+                <button onClick={(e) => this.populateFields(e, contact._id)}>Update?</button>
+              </div>
+            )}
+          </div>
+        </div>
+        <Footer />
+      </Fragment>
+    )
+  }
 }
-
 export default ListOfContacts

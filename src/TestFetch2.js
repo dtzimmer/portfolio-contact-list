@@ -31,13 +31,13 @@ class TestFetch2 extends Component {
         return (
             <Fragment>
                 <Header/>
-                <body className="backgroundlightblue">
+                <div className="backgroundlightblue">
                 <h2>Fetching Friends</h2>
 
                     <section >
                             {results.map((info) => {
                                 return (
-                                    <div className="profiles" key={info.id.value}>
+                                    <div className="profiles" key={info.login.uuid}>
                                         <div>
                                             <img className="profilepic" src={info.picture.large} alt=""/>
                                         </div>
@@ -51,7 +51,7 @@ class TestFetch2 extends Component {
                             })}
                     </section>
                 <Footer/>
-                </body>
+                </div>
             </Fragment>
         )
     }
