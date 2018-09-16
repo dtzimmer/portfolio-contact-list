@@ -30,6 +30,10 @@ class ListOfContacts extends Component {
       phone: '',
       email: ''
     })
+    const { _id } = this.state
+    if (_id) {
+      this.setState({ _id: '' })
+    }
   }
 
   handleSubmit = async (e) => {
