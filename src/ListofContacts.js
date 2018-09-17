@@ -10,11 +10,14 @@ class ListOfContacts extends Component {
       contacts: [],
       name: '',
       phone: '',
-      email: ''
+      email: '',
+      isLoading: false
     }
   }
 
   componentDidMount() {
+    this.setState({isLoading: true});
+
     this.getContacts()
   }
 
@@ -24,7 +27,9 @@ class ListOfContacts extends Component {
       method: 'GET'
     })
     const responseJson = await response.json()
-    this.setState({ contacts: responseJson })
+    if (response.ok) {
+      this.setState({ contacts: responseJson, isLoading: false })
+    }
     this.setState({
       name: '',
       phone: '',
@@ -93,10 +98,14 @@ class ListOfContacts extends Component {
 
 
   render() {
+    const {isLoading} = this.state;
+    if (isLoading) {
+      return <img className="loading-icon" src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Loading Icon" />;
+    }
     return (
       <Fragment>
         <Header />
-        <div className="backgroundlightblue">
+        <div>
           <h2>Fetching Contacts</h2>
           <section>
             <form onSubmit={this.handleSubmit}>
@@ -122,7 +131,7 @@ class ListOfContacts extends Component {
           <div>
             <h2>List of Contacts</h2>
             {this.state.contacts.map(contact =>
-              <div className="border" key={contact._id}>
+              <div className="contact-display-area" key={contact._id}>
                 <h3> Name: {contact.name}</h3>
                 <p> Phone: {contact.phone}</p>
                 <p> Email: {contact.email}</p>

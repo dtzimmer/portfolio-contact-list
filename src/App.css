@@ -12,10 +12,15 @@ form {
   background: whitesmoke;
   padding: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 3px;
 }
 
-body {
-  margin: 10px;
+button {
+  display: block;
+  margin: 10px auto;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 3px;
 }
 
 h1 {
@@ -34,6 +39,26 @@ p {
   padding: 3px;
   text-align: center;
 }
+
+.contact-display-area {
+  display: block;
+  margin: 10px auto;
+  width: 50%;
+  background: lightskyblue;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 3px;
+  min-width: 250px;
+}
+
+.loading-icon{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  height: auto;
+}
+
 
 .centerlink{
   width: 100%;
@@ -89,4 +114,7 @@ p {
   text-align: center;
 }
 
-
+.twitterfeed{
+  margin: auto;
+  width: 40%;
+}
